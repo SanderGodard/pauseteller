@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Pauseteller</title>
+		<style media="screen">
+			*, html {
+				box-sizing: border-box;
+				scroll-behaviour: smooth;
+			}
+			h1 {
+				text-align: center;
+			}
+			body {
+				margin: 0;
+				padding: 20px;
+				color: #dddddd;
+				background-color: #111111;
+				font-family: Droid Sans Mono, Monospace, Arial, sans-serif;
+				align-items: center;
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+				min-height: 100vh;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="tittel">Vent litt....</h1>
+		<script>
+
+			Date.prototype.addDays = function(days) {
+			    var date = new Date(this.valueOf());
+			    date.setDate(date.getDate() + days);
+			    return date;
+			}
+
+			function fullscreen(bool) {
+				if (bool) {
+					if (document.body.requestFullscreen) {
+						document.body.requestFullscreen();
+					} else if (document.body.webkitRequestFullscreen) { /* Safari */
+						document.body.webkitRequestFullscreen();
+					} else if (document.body.msRequestFullscreen) { /* IE11 */
+						document.body.msRequestFullscreen();
+					}
+				} else {
+					if (document.body.exitFullscreen) {
+						document.body.exitFullscreen();
+					} else if (document.body.webkitExitFullscreen) { /* Safari */
+						document.body.webkitExitFullscreen();
+					} else if (document.body.msExitFullscreen) { /* IE11 */
+						document.body.msExitFullscreen();
+					}
+				}
+			}
+
+			function pad(a) {
+		  		if (String(a).length < 2) {
+					a = "0" + a
+				};
+		  		return a;
+			}
+
+
+			function main() {
+				// Må trykke for å starte main, da kan jeg kjøre fullscreen greia selv.
+				document.title = "Vent litt...";
+				tittel = document.getElementById("tittel");
+				pauseklokkeslett = [
+					["08:40", "08:45"],
+					["09:25", "09:30"],
+					["10:15", "10:20"],
+					["11:15", "11:45"],
+					["12:25", "12:30"],
+					["13:10", "13:15"],
+					["13:55", "14:00"],
+					["14:45", "14:50"],
+					["15:30", "08:00"],
+				];
+				// console.log("Trykket.");
+
+				// Telleintervall.
+				setInterval(function() {
+					let isPause = false;
+					let sovetid = false;
+
+					// console.log("Sjekker tid\n" + now.toString() + "\nFra" + compareTimeFrom.toString() + "\nTil" + compareTimeTo.toString() + "\ns=" + s);
+
+					let sec = -1;
+					let seconds = -1;
+
+					for (var i = 0; i < pauseklokkeslett.length; i++) {
+
+						for (var j = 0; j < pauseklokkeslett[i].length; j++) { // Går gjennom alle pausetidspunkter og sjekker hvilke to jeg står mellom.
+							let now = new Date();
+							const s = now.toUTCString();
+							let compareTimeFrom = new Date(s);//.parse(s);
+							let compareTimeTo = new Date(s);//.parse(s);
+							// console.log("------------------NY-------------------")
+							nexti = i;
+							next = j + 1;
+							if (next > 1) {
+								nexti = i + 1;
+								next = 0;
+							}
+							tid1 = pauseklokkeslett[i % pauseklokkeslett.length][j];
+							tid2 = pauseklokkeslett[nexti % pauseklokkeslett.length][next];
+
+							compareTimeFrom.setHours(tid1.split(":")[0], tid1.split(":")[1]);
+							compareTimeTo.setHours(tid2.split(":")[0], tid2.split(":")[1]);
+							// naatimer = now.getHours()
+							if (now.getHours() < 8) {
+								compareTimeFrom = compareTimeFrom.addDays(-1);
+								compareTimeTo = compareTimeTo.addDays(-1);
+								sovetid = true;
+							}
+							if (tid1 == pauseklokkeslett[pauseklokkeslett.length - 1][0] && (now.getHours() > compareTimeFrom.getHours() || now.getHours() < 8)) {
+								compareTimeTo = compareTimeTo.addDays(1);
+								// console.log("Adder en dag på Til");
+							}
+							// console.log(tid1 + "," + pauseklokkeslett[pauseklokkeslett.length - 1][0]);
+							// console.log(now.getHours() + "," + compareTimeFrom.getHours());
+							// if (now > compareTimeFrom) {
+							// 	console.log(compareTimeFrom.toString() + "er før nå");
+							// }
+							// if (now < compareTimeTo) {
+							// 	console.log(compareTimeTo.toString() + "er etter nå");
+							// }
+							if (now > compareTimeFrom && now < compareTimeTo) { // TODO
+								// console.log("from:" + compareTimeTo.valueOf() + "\nNow:" + now.valueOf() + "\ndiff:" + (compareTimeTo.valueOf() - now.valueOf())/1000);
+								sec = compareTimeTo.valueOf() - now.valueOf();
+								seconds = 60 - now.getSeconds();
+
+								isHere = true;
+								if (!isPause) {
+									isPause = false;
+								}
+								for (var k = 0; k < pauseklokkeslett.length; k++) {
+									if (tid1 == pauseklokkeslett[k][0] || sec == -1) {
+										isPause = true;
+									}
+								}
+							} else {
+								isHere = false;
+							}
+							// console.log("Sjekker tid\n" + now.toString() + "\nFra" + compareTimeFrom.toString() + "\nTil" + compareTimeTo.toString() + "\n" + sec + "\nEr i dette intervallet: " + isHere);
+							// console.log("sovetid: " + sovetid);
+						}
+
+
+					}
+
+		  			let hours = Math.floor((sec % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  			let minutes = Math.floor((sec % (1000 * 60 * 60)) / (1000 * 60)) + (60 * hours);
+		  			// let seconds = sec - (minutes * 60);
+		  			// seconds = Math.floor((sec % (1000 * 60)) / (1000));
+
+					// console.log(sec + " , " + seconds);
+
+					minutes = pad(minutes);
+					seconds = pad(seconds);
+					if (sovetid) {
+						if (minutes < 120) {
+							tittel.innerHTML = "Skoledagen har ikke begynt enda";
+						} else {
+							tittel.innerHTML = "Legg deg";
+						}
+						document.title = "Zzzzz";
+					} else {
+						tittel.innerHTML = "Det er " + minutes + " minutter og " + seconds + " sekunder til pause.";
+						document.title = minutes + ":" + seconds;
+					}
+
+		  			if ((isPause && isHere) || false) {
+						fullscreen(true);
+						document.body.style.backgroundColor = "#11ff00";
+						document.body.style.color = "#111111";
+						tittel.innerHTML = "Det er pause!";
+						document.title = "Pause";
+					} else {
+						fullscreen(false);
+						document.body.style.backgroundColor = "#111111";
+						document.body.style.color = "#dddddd";
+		  			}
+				}, 1000);
+			}
+
+			document.body.addEventListener("click", main());
+
+		</script>
+	</body>
+</html>
