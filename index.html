@@ -119,6 +119,7 @@
 				// Telleintervall.
 				setInterval(function() {
 					let isPause = false;
+					let isHere = false;
 					let sovetid = false;
 
 					// console.log("Sjekker tid\n" + now.toString() + "\nFra" + compareTimeFrom.toString() + "\nTil" + compareTimeTo.toString() + "\ns=" + s);
@@ -160,17 +161,18 @@
 								// console.log("from:" + compareTimeTo.valueOf() + "\nNow:" + now.valueOf() + "\ndiff:" + (compareTimeTo.valueOf() - now.valueOf())/1000);
 								sec = compareTimeTo.valueOf() - now.valueOf();
 								seconds = 60 - now.getSeconds();
-
+								// console.log(tid1 + "," + tid2);
 								isHere = true;
 								if (!isPause) {
 									isPause = false;
 								}
 								for (var k = 0; k < pauseklokkeslett.length; k++) {
+									// console.log(tid1 +" ,  "+ pauseklokkeslett[k][0])
 									if (tid1 == pauseklokkeslett[k][0] || sec == -1) {
 										isPause = true;
 									}
 								}
-							} else {
+							} else if (!isHere) {
 								isHere = false;
 							}
 							// console.log("Sjekker tid\n" + now.toString() + "\nFra" + compareTimeFrom.toString() + "\nTil" + compareTimeTo.toString() + "\n" + sec + "\nEr i dette intervallet: " + isHere);
@@ -197,7 +199,7 @@
 						tittel.innerHTML = "Det er " + minutes + " minutter og " + seconds + " sekunder til pause.";
 						document.title = minutes + ":" + seconds;
 					}
-
+					// console.log("Pause:" + isPause + "\nerHer:" + isHere + "\n");
 		  			if ((isPause && isHere) || false) {
 						fullscreen(true);
 						document.body.style.backgroundColor = "#11ff00";
