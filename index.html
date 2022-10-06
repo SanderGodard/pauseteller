@@ -13,7 +13,6 @@
 			}
 			body {
 				margin: 0;
-				padding: 20px;
 				color: #dddddd;
 				background-color: #111111;
 				font-family: Droid Sans Mono, Monospace, Arial, sans-serif;
@@ -21,12 +20,49 @@
 				display: flex;
 				flex-flow: column nowrap;
 				justify-content: center;
+				/* width: 100vw; */
+			}
+			main {
+				padding: 20px;
 				min-height: 100vh;
+				align-items: center;
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+			}
+			footer {
+				padding: 20px;
+				align-items: center;
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+			}
+
+			body::-webkit-scrollbar {
+				width: 6px;
+				background-color: transparent;
+				position: fixed;
+			}
+
+			body::-webkit-scrollbar-track {
+				background-color: transparent;
+			}
+
+			body::-webkit-scrollbar-thumb {
+				-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+				background-color: #000000;
+				margin: 2px;
+				border-radius: 3px;
 			}
 		</style>
 	</head>
 	<body>
-		<h1 id="tittel">Vent litt....</h1>
+		<main>
+			<h1 id="tittel">Vent litt....</h1>
+		</main>
+		<footer>
+			Trykk på siden, så åpner den fullskjerm når du har pause.
+		</footer>
 		<script>
 
 			Date.prototype.addDays = function(days) {
@@ -119,15 +155,8 @@
 								compareTimeTo = compareTimeTo.addDays(1);
 								// console.log("Adder en dag på Til");
 							}
-							// console.log(tid1 + "," + pauseklokkeslett[pauseklokkeslett.length - 1][0]);
-							// console.log(now.getHours() + "," + compareTimeFrom.getHours());
-							// if (now > compareTimeFrom) {
-							// 	console.log(compareTimeFrom.toString() + "er før nå");
-							// }
-							// if (now < compareTimeTo) {
-							// 	console.log(compareTimeTo.toString() + "er etter nå");
-							// }
-							if (now > compareTimeFrom && now < compareTimeTo) { // TODO
+
+							if (now > compareTimeFrom && now < compareTimeTo) {
 								// console.log("from:" + compareTimeTo.valueOf() + "\nNow:" + now.valueOf() + "\ndiff:" + (compareTimeTo.valueOf() - now.valueOf())/1000);
 								sec = compareTimeTo.valueOf() - now.valueOf();
 								seconds = 60 - now.getSeconds();
@@ -153,9 +182,6 @@
 
 		  			let hours = Math.floor((sec % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 		  			let minutes = Math.floor((sec % (1000 * 60 * 60)) / (1000 * 60)) + (60 * hours);
-		  			// let seconds = sec - (minutes * 60);
-		  			// seconds = Math.floor((sec % (1000 * 60)) / (1000));
-
 					// console.log(sec + " , " + seconds);
 
 					minutes = pad(minutes);
