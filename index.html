@@ -57,17 +57,75 @@
 				margin: 2px;
 				border-radius: 3px;
 			}
+			ul {
+				/* list-style-type: none; */
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+			.box {
+				display; block;
+				min-width: 100%;
+				margin-top: 2rem;
+				left: 0;
+				position: relative;
+			}
 		</style>
 	</head>
 	<body>
 		<main>
 			<h1 id="tittel">Vent litt....</h1>
+			<div class="box">
+				<h2>Kjeder du deg?</h2>
+				<ul>
+					<li><a target="_blank" href="https://tetris.com/play-tetris">Tetris</a></li>
+					<li><a target="_blank" href="https://g.co/kgs/Zv6EQ8">Snake</a></li>
+					<li><a target="_blank" href="https://g.co/kgs/aZGfJd">Solitare</a></li>
+					<li><a target="_blank" href="https://curvefever.pro/">Curvefever</a></li>
+					<li><a target="_blank" href=https://ctf.cissky.net/">Skynet CTF</a></li>
+					<li><a target="_blank" href="https://vg.no">VG</a></li>
+					<li><a target="_blank" href="https://humanbenchmark.com/">Human Benchmark</a></li>
+					<li><a target="_blank" href="https://www.boredbutton.com/">Bored Button</a></li>
+					<li><a target="_blank" href="https://meny.cissky.net/">Messe Meny</a></li>
+				</ul>
+			</div>
 		</main>
 		<footer>
 			Trykk på siden, så åpner den fullskjerm når du har pause.
 		</footer>
 		<script>
+			// // Notifier kode - Funker dårlig
+			// function Notifier() {}
+			//
+			// // Returns "true" if this browser supports notifications.
+			// Notifier.prototype.HasSupport = function() {
+			//   if (window.webkitNotifications) {
+			//     return true;
+			//   } else {
+			//     return false;
+			//   }
+			// }
+			//
+			// // Request permission for this page to send notifications. If allowed,
+			// // calls function "cb" with "true" as the first argument.
+			// Notifier.prototype.RequestPermission = function(cb) {
+			//   window.webkitNotifications.requestPermission(function() {
+			//     if (cb) { cb(window.webkitNotifications.checkPermission() == 0); }
+			//   });
+			// }
+			//
+			// // Popup a notification with icon, title, and body. Returns false if
+			// // permission was not granted.
+			// Notifier.prototype.Notify = function(icon, title, body) {
+			// 	var popup = window.webkitNotifications.createNotification(icon, title, body);
+			// 	popup.show();
+			// }
 
+			// Date kode
 			Date.prototype.addDays = function(days) {
 			    var date = new Date(this.valueOf());
 			    date.setDate(date.getDate() + days);
@@ -75,22 +133,26 @@
 			}
 
 			function fullscreen(bool) {
-				if (bool) {
-					if (document.body.requestFullscreen) {
-						document.body.requestFullscreen();
-					} else if (document.body.webkitRequestFullscreen) { /* Safari */
-						document.body.webkitRequestFullscreen();
-					} else if (document.body.msRequestFullscreen) { /* IE11 */
-						document.body.msRequestFullscreen();
+				try {
+					if (bool) {
+						if (document.body.requestFullscreen) {
+							document.body.requestFullscreen();
+						} else if (document.body.webkitRequestFullscreen) { /* Safari */
+							document.body.webkitRequestFullscreen();
+						} else if (document.body.msRequestFullscreen) { /* IE11 */
+							document.body.msRequestFullscreen();
+						}
+					} else {
+						if (document.body.exitFullscreen) {
+							document.body.exitFullscreen();
+						} else if (document.body.webkitExitFullscreen) { /* Safari */
+							document.body.webkitExitFullscreen();
+						} else if (document.body.msExitFullscreen) { /* IE11 */
+							document.body.msExitFullscreen();
+						}
 					}
-				} else {
-					if (document.body.exitFullscreen) {
-						document.body.exitFullscreen();
-					} else if (document.body.webkitExitFullscreen) { /* Safari */
-						document.body.webkitExitFullscreen();
-					} else if (document.body.msExitFullscreen) { /* IE11 */
-						document.body.msExitFullscreen();
-					}
+				} catch (e) {
+					// pass
 				}
 			}
 
@@ -115,7 +177,7 @@
 					["13:10", "13:15"],
 					["13:55", "14:00"],
 					["14:45", "14:50"],
-					["15:30", "08:00"],
+					["15:30", "08:00"], // Skjer noe rart her?
 				];
 				// console.log("Trykket.");
 
@@ -213,11 +275,13 @@
 						document.body.style.color = "#111111";
 						tittel.innerHTML = "Det er pause!";
 						document.title = "Pause";
+						// Notifier.prototype.Notify("", "Pauseteller", "Det er pause nå!")
 					} else {
 						fullscreen(false);
 						document.body.style.backgroundColor = "#111111";
 						document.body.style.color = "#dddddd";
 		  			}
+					document.getElementsByTagName("main")[0].style.minHeight = "100vh";
 				}, 1000);
 			}
 
