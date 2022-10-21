@@ -93,6 +93,23 @@
 			.split > div {
 				width: 49%;
 			}
+			.full {
+				color: white;
+				display; block;
+				/* min-width: 100%; */
+				/* position: relative; */
+				border-radius: 8px;
+				box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+				background-color: #171717;
+				padding: 15px;
+			}
+			.full:hover {
+				cursor: pointer;
+				background-color: #202020;
+			}
+			.full:active {
+				background-color: #222;
+			}
 		</style>
 	</head>
 	<body>
@@ -100,9 +117,13 @@
 			<h1 id="tittel">Vent litt....</h1>
 		</main>
 		<footer>
-			<h3>
-				Trykk på siden, så åpner den fullskjerm når du har pause.
-			</h3>
+			<button type="button" class="full" onclick="toggleFullscreen()" name="button">
+				Fullskjerm
+			</button>
+			<!-- <br>
+			<br>
+			<br>
+			<br>
 			<h2>Kjeder du deg?</h2>
 			<div class="split">
 				<div class="box">
@@ -125,7 +146,7 @@
 						<li><a target="_blank" href="https://www.boredbutton.com/">Bored Button</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 		</footer>
 		<script>
 			// // Notifier kode - Funker dårlig
@@ -162,29 +183,15 @@
 			    return date;
 			}
 
-			function fullscreen(bool) {
-				try {
-					if (bool) {
-						if (document.body.requestFullscreen) {
-							document.body.requestFullscreen();
-						} else if (document.body.webkitRequestFullscreen) { /* Safari */
-							document.body.webkitRequestFullscreen();
-						} else if (document.body.msRequestFullscreen) { /* IE11 */
-							document.body.msRequestFullscreen();
-						}
-					} else {
-						if (document.body.exitFullscreen) {
-							document.body.exitFullscreen();
-						} else if (document.body.webkitExitFullscreen) { /* Safari */
-							document.body.webkitExitFullscreen();
-						} else if (document.body.msExitFullscreen) { /* IE11 */
-							document.body.msExitFullscreen();
-						}
-					}
-				} catch (e) {
-					// pass
+			function toggleFullscreen() {
+				if (document.fullscreenElement) {
+					document.exitFullscreen()
+						.catch((err) => console.error(err))
+				} else {
+					document.documentElement.requestFullscreen(); // Får error på linja men den funker jo, så who knows?
 				}
 			}
+
 
 			function pad(a) {
 		  		if (String(a).length < 2) {
@@ -300,14 +307,14 @@
 					}
 					// console.log("Pause:" + isPause + "\nerHer:" + isHere + "\n");
 		  			if ((isPause && isHere) || false) {
-						fullscreen(true);
+						// fullscreen(true);
 						document.body.style.backgroundColor = "#307023";
 						document.body.style.color = "#111111";
 						tittel.innerHTML = "Det er pause!";
 						document.title = "Pause";
 						// Notifier.prototype.Notify("", "Pauseteller", "Det er pause nå!")
 					} else {
-						fullscreen(false);
+						// fullscreen(false);
 						document.body.style.backgroundColor = "#111111";
 						document.body.style.color = "#dddddd";
 		  			}
@@ -315,7 +322,8 @@
 				}, 1000);
 			}
 
-			document.body.addEventListener("click", main());
+			main();
+
 
 		</script>
 	</body>
