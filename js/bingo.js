@@ -64,8 +64,8 @@ shuffle(spm);
 var boardSize1 = Math.ceil(Math.sqrt(spm.length));
 var boardSize2 = Math.ceil(spm.length/boardSize1)
 
-if (boardSize1 > 5) ? boardSize1 = 5;
-if (boardSize2 > 5)	? boardSize2 = 5;
+if (boardSize1 > 5) {boardSize1 = 5;}
+if (boardSize2 > 5)	{boardSize2 = 5;}
 
 
 // console.log("table");
