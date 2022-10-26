@@ -1,0 +1,106 @@
+*, html {
+	box-sizing: border-box;
+	scroll-behaviour: smooth;
+}
+h1 {
+	text-align: center;
+}
+body {
+	margin: 0;
+	color: #dddddd;
+	background-color: #111111;
+	font-family: Droid Sans Mono, Monospace, Arial, sans-serif;
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	/* width: 100vw; */
+}
+body::backdrop {
+	background-color: rgba(255,255,255,0);
+}
+main {
+	padding: 20px;
+	min-height: 100vh;
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+}
+footer {
+	padding: 20px;
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+}
+
+body::-webkit-scrollbar {
+	width: 6px;
+	background-color: transparent;
+	position: fixed;
+}
+
+body::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+	background-color: #000000;
+	margin: 2px;
+	border-radius: 3px;
+}
+ul {
+	/* list-style-type: none; */
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+a:hover {
+	text-decoration: underline;
+}
+.box {
+	color: white;
+	display; block;
+	/* min-width: 100%; */
+	margin-top: 2rem;
+	left: 0;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background-color: #171717;
+	padding: 20px;
+}
+.box h3 {
+	margin: 0;
+}
+.split {
+	min-width: 100%;
+	left: 0;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+}
+.split > div {
+	width: 49%;
+}
+.full {
+	color: white;
+	display; block;
+	/* min-width: 100%; */
+	/* position: relative; */
+	border-radius: 8px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background-color: #171717;
+	padding: 15px;
+}
+.full:hover {
+	cursor: pointer;
+	background-color: #202020;
+}
+.full:active {
+	background-color: #222;
+}
