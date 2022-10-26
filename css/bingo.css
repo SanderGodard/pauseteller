@@ -1,6 +1,7 @@
 .bingo {
 	background-color: var(--black);
 	color: var(--white);
+	max-width: 800px;
 }
 
 
@@ -10,12 +11,13 @@
 }
 .bingo .table .tr {
 	display: table-row;
-	/* display: flex; */
+	display: flex;
 	flex-flow: row nowrap;
 }
 
 .bingo .table .tr .td {
 	position: relative;
+	flex: 1 1 0px;
 	background-color: inherit;
 	border-radius: 0;
 	font-size: 1rem;
@@ -24,9 +26,12 @@
 	border: .5px solid #4a4a4a;
 	padding: 1rem;
 	display: table-cell;
+	display: block;
 	font: inherit;
 	text-align: center;
 	vertical-align: middle;
+	word-wrap: break-word;
+	word-break: break-word;
 }
 
 .bingo .table .tr .td:active, .bingo .table .tr .td:hover, .bingo .table .tr .td:focus {
