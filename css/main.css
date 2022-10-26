@@ -1,3 +1,13 @@
+:root {
+  --black: #111;
+  --white: #ddd;
+  --bg:    #111;
+  --text:  #ddd;
+  --green: #307023;
+  --boxbg: #171717;
+  --boxhover: #202020;
+}
+
 *, html {
 	box-sizing: border-box;
 	scroll-behaviour: smooth;
@@ -7,8 +17,8 @@ h1 {
 }
 body {
 	margin: 0;
-	color: #dddddd;
-	background-color: #111111;
+	color: var(--text);
+	background-color: var(--bg);
 	font-family: Droid Sans Mono, Monospace, Arial, sans-serif;
 	align-items: center;
 	display: flex;
@@ -18,6 +28,7 @@ body {
 }
 body::backdrop {
 	background-color: rgba(255,255,255,0);
+	/* fullscreen fix */
 }
 main {
 	padding: 20px;
@@ -62,7 +73,7 @@ a:hover {
 	text-decoration: underline;
 }
 .box {
-	color: white;
+	color: var(--white);
 	display; block;
 	/* min-width: 100%; */
 	margin-top: 2rem;
@@ -70,7 +81,7 @@ a:hover {
 	position: relative;
 	border-radius: 8px;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-	background-color: #171717;
+	background-color: var(--boxbg);
 	padding: 20px;
 }
 .box h3 {
@@ -85,17 +96,19 @@ a:hover {
 	align-items: stretch;
 }
 .split > div {
-	width: 49%;
+	/* width: 49%; */
+	margin: 1rem;
 }
 .full {
-	color: white;
+	color: var(--white);
 	display; block;
 	/* min-width: 100%; */
 	/* position: relative; */
 	border-radius: 8px;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-	background-color: #171717;
+	background-color: var(--boxbg);
 	padding: 15px;
+	border: 1px solid var(--black);
 }
 .full:hover {
 	cursor: pointer;
@@ -103,4 +116,28 @@ a:hover {
 }
 .full:active {
 	background-color: #222;
+}
+
+.floater {
+	border-radius: 2rem;
+	padding: 1rem;
+	position: absolute;
+	left: 4rem;
+	top: 4rem;
+	background-color: var(--boxbg);
+	color: var(--white);
+	/* border: 0px solid var(--text); */
+}
+
+.floater:hover {
+	background-color: #202020;
+}
+.floater:active {
+	background-color: #222;
+}
+
+.material-icons {
+	font-size: 1.2em !important;
+	vertical-align: bottom;
+	margin: 0 .2em 0 0;
 }

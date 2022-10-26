@@ -31,6 +31,11 @@ function main() {
 	// Må trykke for å starte main, da kan jeg kjøre fullscreen greia selv.
 	document.title = "Vent litt...";
 	tittel = document.getElementById("tittel");
+	if (tittel != null) {
+		mainside = true;
+	} else {
+		mainside = false;
+	}
 	pauseklokkeslett = [
 		["08:40", "08:45"],
 		["09:25", "09:30"],
@@ -120,7 +125,7 @@ function main() {
 		}
 		minutes = pad(minutes);
 		seconds = pad(seconds);
-		if (sovetid) {
+		if (sovetid && mainside) {
 			if (minutes < 120) {
 				tittel.innerHTML = "Skoledagen har ikke begynt enda";
 			} else {
@@ -128,21 +133,35 @@ function main() {
 			}
 			document.title = "Zzzzz";
 		} else {
-			tittel.innerHTML = "Det er " + minutes + " minutter og " + seconds + " sekunder til pause.";
+			if (mainside) {
+				tittel.innerHTML = "Det er " + minutes + " minutter og " + seconds + " sekunder til pause.";
+			}
 			document.title = minutes + ":" + seconds;
 		}
 		// console.log("Pause:" + isPause + "\nerHer:" + isHere + "\n");
+		var r = document.querySelector(':root');
+		var rs = getComputedStyle(r);
 		if ((isPause && isHere) || false) {
 			// fullscreen(true);
-			document.body.style.backgroundColor = "#307023";
-			document.body.style.color = "#111111";
-			tittel.innerHTML = "Det er pause!";
+			if (mainside) {
+				tittel.innerHTML = "Det er pause!";
+			}
+
 			document.title = "Pause";
 			// Notifier.prototype.Notify("", "Pauseteller", "Det er pause nå!")
+
+			// Variable change
+
+			// document.body.style.backgroundColor = "#307023";
+			// document.body.style.color = "#111111";
+			r.style.setProperty('--bg', rs.getPropertyValue('--green'));
+			r.style.setProperty('--text', rs.getPropertyValue('--black'));
 		} else {
 			// fullscreen(false);
-			document.body.style.backgroundColor = "#111111";
-			document.body.style.color = "#dddddd";
+			r.style.setProperty('--bg', rs.getPropertyValue('--black'));
+			r.style.setProperty('--text', rs.getPropertyValue('--white'));
+			// document.body.style.backgroundColor = "#111111";
+			// document.body.style.color = "#dddddd";
 		}
 		document.getElementsByTagName("main")[0].style.minHeight = "100vh";
 	}, 1000);
