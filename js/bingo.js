@@ -58,6 +58,14 @@ if (document.getElementById("matte")) {
 		"Noen stiller et spørsmål etter 15.27",
 		"Du følger med"
 	];
+} else if (document.getElementById("annet")) {
+	var table = document.getElementById("annet");
+	spm = [
+		"Live søler kaffe",
+		"Du ender opp med å se på Youtube om det vi har om istedet",
+		"Noen steller seg bakerst",
+		"Johnny sover"
+	];
 }
 
 
