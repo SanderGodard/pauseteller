@@ -71,8 +71,8 @@ if (document.getElementById("matte")) {
 
 shuffle(spm);
 
-var boardSize1 = Math.ceil(Math.sqrt(spm.length));
-var boardSize2 = Math.ceil(spm.length/boardSize1)
+var boardSize1 = Math.floor(Math.sqrt(spm.length));
+var boardSize2 = Math.floor(spm.length/boardSize1)
 
 if (boardSize1 > 5) {boardSize1 = 5;}
 if (boardSize2 > 5)	{boardSize2 = 5;}
@@ -100,7 +100,7 @@ for (var i = 0; i < boardSize2; i++) {
 				e.target.className = "td checked";
 			}
 		});
-		if (teller == 0 && newCell.innerHTML == "Du følger med") {
+		if (teller == 0 && newCell.innerHTML == "Du følger med" && spm[-1] == "Nils snakker til seg selv") { // Ganske lav sjanse for å finne.
 			msg = document.createElement("div");
 			msg.innerHTML = "Gratulerer<br>Du fant et easter egg<br>Klarer du også å få bingo?"
 			table.appendChild(msg);
