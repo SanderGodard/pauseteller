@@ -54,7 +54,9 @@ if (document.getElementById("matte")) {
 		"Står mer enn to minutter med fronten mot tavla",
 		'"Ser dere noe feil her?"',
 		"ū",
-		"Bratseth sovner"
+		"Bratseth sovner",
+		"Noen stiller et spørsmål etter 15.27",
+		"Du følger med"
 	];
 }
 
@@ -70,6 +72,7 @@ if (boardSize2 > 5)	{boardSize2 = 5;}
 
 // console.log("table");
 var teller = 0;
+loop1:
 for (var i = 0; i < boardSize2; i++) {
 	var newRow = document.createElement("div");
 	newRow.className = "tr";
@@ -89,6 +92,12 @@ for (var i = 0; i < boardSize2; i++) {
 				e.target.className = "td checked";
 			}
 		});
+		if (teller == 0 && newCell.innerHTML == "Du følger med") {
+			msg = document.createElement("div");
+			msg.innerHTML = "Gratulerer<br>Du fant et easter egg<br>Klarer du også å få bingo?"
+			table.appendChild(msg);
+			break loop1;
+		}
 		teller++;
 	}
 }
