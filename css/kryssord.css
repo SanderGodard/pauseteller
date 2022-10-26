@@ -16,14 +16,14 @@
 }
 
 .crossword .table input {
-	width: 3rem;
+	width: 2.2rem;
 	background-color: inherit;
 	border-radius: 0;
 	font-size: 1rem;
 	color: inherit;
 	transition: background-color .1s ease;
 	border: .5px solid #4a4a4a;
-	padding: 1rem;
+	padding: .6rem;
 	display: table-cell;
 	font: inherit;
 	text-align: center
