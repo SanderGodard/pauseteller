@@ -77,7 +77,14 @@ if (document.getElementById("matte")) {
 		'"Dere er så heldige"',
 		'"For å si det sånn"',
 		"Spør oss om nyhetene",
-		"Blir snakk om Russland"
+		"Blir snakk om Russland",
+		"Det blir diskusjon og uenighet",
+		"Tidligere kadett holder foredrag",
+		"Elisabeth kunne svaret på spørsmålet sitt likevel",
+		"Berntsen tar feil i alt han sier",
+		"Elisabeth står med hendene i lomma",
+		"Instruktør vandrer bakerst i klasserommet",
+		"Du ga ikke svaret instruktøren ville ha"
 	];
 }
 
