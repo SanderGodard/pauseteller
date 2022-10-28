@@ -25,12 +25,15 @@ body {
 	flex-flow: column nowrap;
 	justify-content: center;
 	/* width: 100vw; */
+	overflow-x: hidden;
+	width: 100%;
 }
 body::backdrop {
 	background-color: rgba(255,255,255,0);
 	/* fullscreen fix */
 }
 main {
+	max-width: 100%;
 	padding: 20px;
 	min-height: 100vh;
 	align-items: center;
@@ -39,6 +42,7 @@ main {
 	justify-content: center;
 }
 footer {
+	max-width: 100%;
 	padding: 20px;
 	align-items: center;
 	display: flex;
@@ -88,11 +92,11 @@ a:hover {
 	margin: 0;
 }
 .split {
-	min-width: 100%;
+	max-width: 100%;
 	left: 0;
 	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
+	flex-flow: row wrap;
+	justify-content: center;
 	align-items: stretch;
 }
 .split > div {
@@ -122,8 +126,8 @@ a:hover {
 	border-radius: 2rem;
 	padding: 1rem;
 	position: absolute;
-	left: 4rem;
-	top: 4rem;
+	left: 4vw;
+	top: 4vw;
 	background-color: var(--boxbg);
 	color: var(--white);
 	/* border: 0px solid var(--text); */

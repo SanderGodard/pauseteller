@@ -7,6 +7,8 @@ b {
 .crossword {
 	background-color: var(--boxbg);
 	color: var(--white);
+	overflow: auto;
+	max-width: 100%;
 }
 
 .crossword .table {
