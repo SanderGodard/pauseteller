@@ -66,6 +66,19 @@ if (document.getElementById("matte")) {
 		"Noen steller seg bakerst",
 		"Johnny sover"
 	];
+} else if (document.getElementById("cypro")) {
+	var table = document.getElementById("cypro");
+	spm = [
+		"V76 har fullt oppmøte 40/40",
+		"Elisabeth skravler sammenhengene i 10 min",
+		"Linningsvoll sovner",
+		"Instruktør tar seg kaffe",
+		"Du jobber faktisk på semesteroppgaven",
+		'"Dere er så heldige"',
+		'"For å si det sånn"',
+		"Spør oss om nyhetene",
+		"Blir snakk om Russland"
+	];
 }
 
 
