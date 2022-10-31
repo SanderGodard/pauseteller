@@ -89,10 +89,10 @@ function main() {
 					compareTimeTo = compareTimeTo.addDays(1);
 					// console.log("Adder en dag på Til");
 				}
-
 				if (now > compareTimeFrom && now < compareTimeTo) {
-					// console.log("from:" + compareTimeTo.valueOf() + "\nNow:" + now.valueOf() + "\ndiff:" + (compareTimeTo.valueOf() - now.valueOf())/1000);
-					seconds = 60 - now.getSeconds();
+					// console.log("sek? " + ((compareTimeTo.getMinutes() - now.getMinutes()) * 60 - 60 - now.getSeconds()));
+					sec = (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds();
+					seconds = sec % 60;
 					// console.log(tid1 + "," + tid2);
 					isHere = true;
 					// if (!isPause) {
@@ -100,7 +100,9 @@ function main() {
 					// }
 					for (var k = 0; k < pauseklokkeslett.length; k++) {
 						// console.log(tid1 +" ,  "+ pauseklokkeslett[k][0])
-						if (tid1 == pauseklokkeslett[k][0] || sec == -1) {
+						if (tid1 == pauseklokkeslett[k][0]) { //  || sec == -1
+							// console.log(compareTimeFrom);
+							// console.log(compareTimeTo);
 							isPause = true;
 						}
 					}
@@ -113,10 +115,12 @@ function main() {
 
 
 		}
-
-		let hours = Math.floor((sec % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		let minutes = Math.floor((sec % (1000 * 60 * 60)) / (1000 * 60)) + (60 * hours);
+		// let hours = Math.floor(sec / (60 * 60));
+		// let hours = Math.floor((sec % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		let minutes = Math.floor(sec / 60);
+		// let minutes = Math.floor((sec % (1000 * 60 * 60)) / (1000 * 60)) + (60 * hours);
 		// console.log(sec + " , " + seconds);
+		// console.log("min" + minutes);
 
 		if (seconds == 60) {
 			seconds = 0;
