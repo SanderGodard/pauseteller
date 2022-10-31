@@ -92,21 +92,20 @@ function main() {
 
 				if (now > compareTimeFrom && now < compareTimeTo) {
 					// console.log("from:" + compareTimeTo.valueOf() + "\nNow:" + now.valueOf() + "\ndiff:" + (compareTimeTo.valueOf() - now.valueOf())/1000);
-					sec = compareTimeTo.valueOf() - now.valueOf();
 					seconds = 60 - now.getSeconds();
 					// console.log(tid1 + "," + tid2);
 					isHere = true;
-					if (!isPause) {
-						isPause = false;
-					}
+					// if (!isPause) {
+					// 	isPause = false;
+					// }
 					for (var k = 0; k < pauseklokkeslett.length; k++) {
 						// console.log(tid1 +" ,  "+ pauseklokkeslett[k][0])
 						if (tid1 == pauseklokkeslett[k][0] || sec == -1) {
 							isPause = true;
 						}
 					}
-				} else if (!isHere) {
-					isHere = false;
+				// } else if (!isHere) {
+				// 	isHere = false;
 				}
 				// console.log("Sjekker tid\n" + now.toString() + "\nFra" + compareTimeFrom.toString() + "\nTil" + compareTimeTo.toString() + "\n" + sec + "\nEr i dette intervallet: " + isHere);
 				// console.log("sovetid: " + sovetid);

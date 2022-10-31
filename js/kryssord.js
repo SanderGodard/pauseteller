@@ -19,6 +19,8 @@ matrise = [
 	[ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0],
 ]
 
+// Legge inn så når man trykker tab går den videre vannrett og enter går nedover
+
 across = [
 	[2, "Rølp og julemat"],
 	[4, "Rise and grind"],
