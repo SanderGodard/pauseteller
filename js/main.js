@@ -91,7 +91,9 @@ function main() {
 				}
 				if (now > compareTimeFrom && now < compareTimeTo) {
 					// console.log("sek? " + ((compareTimeTo.getMinutes() - now.getMinutes()) * 60 - 60 - now.getSeconds()));
-					sec = (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds();
+					// console.log(compareTimeFrom);
+					// console.log(compareTimeTo);
+					sec = ((compareTimeTo.getHours() - now.getHours()) * 60 * 60) + (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds();
 					seconds = sec % 60;
 					// console.log(tid1 + "," + tid2);
 					isHere = true;
@@ -101,8 +103,6 @@ function main() {
 					for (var k = 0; k < pauseklokkeslett.length; k++) {
 						// console.log(tid1 +" ,  "+ pauseklokkeslett[k][0])
 						if (tid1 == pauseklokkeslett[k][0]) { //  || sec == -1
-							// console.log(compareTimeFrom);
-							// console.log(compareTimeTo);
 							isPause = true;
 						}
 					}
