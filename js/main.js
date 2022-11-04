@@ -147,7 +147,7 @@ function main() {
 		if ((isPause && isHere) || false) {
 			// fullscreen(true);
 			if (mainside) {
-				tittel.innerHTML = "Det er pause!";
+				tittel.innerHTML = "Det er pause!" + "<br> " + minutes + " min, og " + seconds + " sekunder igjen.";
 			}
 
 			document.title = "Pause";
