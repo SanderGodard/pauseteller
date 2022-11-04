@@ -85,15 +85,27 @@ function main() {
 					compareTimeTo = compareTimeTo.addDays(-1);
 					sovetid = true;
 				}
-				if (tid1 == pauseklokkeslett[pauseklokkeslett.length - 1][0] && (now.getHours() > compareTimeFrom.getHours() || now.getHours() < 8)) {
+				// console.log(tid1 + "vs" + pauseklokkeslett[pauseklokkeslett.length - 1][0]);
+				// console.log(now.getHours() + "over" +  compareTimeFrom.getHours() + "or" + now.getHours() + "less than" + 8);
+				if (tid1 == pauseklokkeslett[pauseklokkeslett.length - 1][0] && (now.getHours() >= compareTimeFrom.getHours() || now.getHours() < 8)) {
 					compareTimeTo = compareTimeTo.addDays(1);
 					// console.log("Adder en dag på Til");
 				}
+				// console.log(now);
+				// console.log(now.valueOf());
+				// console.log(compareTimeTo);
+				// console.log(compareTimeTo.valueOf());
 				if (now > compareTimeFrom && now < compareTimeTo) {
 					// console.log("sek? " + ((compareTimeTo.getMinutes() - now.getMinutes()) * 60 - 60 - now.getSeconds()));
 					// console.log(compareTimeFrom);
-					// console.log(compareTimeTo);
-					sec = ((compareTimeTo.getHours() - now.getHours()) * 60 * 60) + (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds();
+					let dag = 0;
+					if (compareTimeTo.getDate() != now.getDate()) {
+						dag = 24*60*60*60 - ((15.5-8)*60*60); //  - skoledag
+					}
+					sec = (dag) + ((compareTimeTo.getHours() - now.getHours()) * 60 * 60) + (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds();
+					// console.log(sec);
+					// sec = (compareTimeTo.valueOf() - now.valueOf());
+					// console.log(sec);
 					seconds = sec % 60;
 					// console.log(tid1 + "," + tid2);
 					isHere = true;
