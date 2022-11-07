@@ -100,9 +100,9 @@ function main() {
 					// console.log(compareTimeFrom);
 					let dag = 0;
 					if (compareTimeTo.getDate() != now.getDate()) {
-						dag = 24*60*60*60 - ((15.5-8)*60*60); //  - skoledag
+						dag = 24*60*60 - ((15.5-8)*60); //  - skoledag
 					}
-					sec = (dag) + ((compareTimeTo.getHours() - now.getHours()) * 60 * 60) + (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds();
+					sec = (dag) + ((compareTimeTo.getHours() - now.getHours()) * 60 * 60) + (compareTimeTo.getMinutes() - now.getMinutes()) * 60 - now.getSeconds(); // TODO er fortsatt noe feil her med logikken, sørg for at timer for kl 2000 er 12 timer før kl 0800, og da at det ikke viser 24 timer antall minutter igjen
 					// console.log(sec);
 					// sec = (compareTimeTo.valueOf() - now.valueOf());
 					// console.log(sec);
