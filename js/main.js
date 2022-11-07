@@ -8,6 +8,7 @@ Date.prototype.addDays = function(days) {
 
 // Toggle fullscreen
 function toggleFullscreen() {
+
 	if (document.fullscreenElement) {
 		document.exitFullscreen()
 			.catch((err) => console.error(err))
@@ -15,6 +16,8 @@ function toggleFullscreen() {
 		document.documentElement.requestFullscreen(); // Får error på linja men den funker jo, så who knows?
 		window.scrollTo(0, 0);
 	}
+	document.getElementsByTagName("main")[0].style.minHeight = "100vh";
+	
 }
 
 
@@ -178,7 +181,6 @@ function main() {
 			// document.body.style.backgroundColor = "#111111";
 			// document.body.style.color = "#dddddd";
 		}
-		document.getElementsByTagName("main")[0].style.minHeight = "100vh";
 	}, 1000);
 }
 
