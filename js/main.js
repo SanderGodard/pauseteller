@@ -8,7 +8,6 @@ Date.prototype.addDays = function(days) {
 
 // Toggle fullscreen
 function toggleFullscreen() {
-
 	if (document.fullscreenElement) {
 		document.exitFullscreen()
 			.catch((err) => console.error(err))
@@ -17,7 +16,6 @@ function toggleFullscreen() {
 		window.scrollTo(0, 0);
 	}
 	document.getElementsByTagName("main")[0].style.minHeight = "100vh";
-	
 }
 
 
