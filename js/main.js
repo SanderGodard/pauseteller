@@ -157,7 +157,9 @@ function main() {
 		// console.log("Pause:" + isPause + "\nerHer:" + isHere + "\n");
 		var r = document.querySelector(':root');
 		var rs = getComputedStyle(r);
-		if ((isPause && isHere) || false) {
+		var dayOfWeek = yourDateObject.getDay();
+		var isWeekend = (dayOfWeek === 6) || (dayOfWeek  === 0); // 6 = Saturday, 0 = Sunday
+		if ((isPause && isHere && !isWeekend) || false) {
 			// fullscreen(true);
 			if (mainside) {
 				tittel.innerHTML = "Det er pause!" + "<br> " + minutes + " min, og " + seconds + " sekunder igjen.";
@@ -172,6 +174,14 @@ function main() {
 			// document.body.style.color = "#111111";
 			r.style.setProperty('--bg', rs.getPropertyValue('--green'));
 			r.style.setProperty('--text', rs.getPropertyValue('--black'));
+		} else if (isWeekend) {
+			if (mainside) {
+				tittel.innerHTML = "Det er helg! Ta deg fri.";
+			}
+
+			document.title = "Helg";
+			r.style.setProperty('--bg', rs.getPropertyValue('--black'));
+			r.style.setProperty('--text', rs.getPropertyValue('--white'));
 		} else {
 			// fullscreen(false);
 			r.style.setProperty('--bg', rs.getPropertyValue('--black'));
