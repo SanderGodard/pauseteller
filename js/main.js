@@ -157,7 +157,7 @@ function main() {
 		// console.log("Pause:" + isPause + "\nerHer:" + isHere + "\n");
 		var r = document.querySelector(':root');
 		var rs = getComputedStyle(r);
-		var dayOfWeek = yourDateObject.getDay();
+		var dayOfWeek =  new Date().getDay();
 		var isWeekend = (dayOfWeek === 6) || (dayOfWeek  === 0); // 6 = Saturday, 0 = Sunday
 		if ((isPause && isHere && !isWeekend) || false) {
 			// fullscreen(true);
