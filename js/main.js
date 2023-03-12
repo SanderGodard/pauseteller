@@ -34,6 +34,18 @@ function main() {
 	tittel = document.getElementById("tittel");
 	if (tittel != null) {
 		mainside = true;
+		// Print hvilken uke det er i console.
+		ccurrentDate = new Date();
+		startDate = new Date(ccurrentDate.getFullYear(), 0, 1);
+		var days = Math.floor((ccurrentDate - startDate) /
+			(24 * 60 * 60 * 1000));
+
+		var weekNumber = Math.ceil(days / 7);
+
+		// Display the calculated result
+		console.log("Today is: " + ccurrentDate);
+		console.log("Week number: " + weekNumber);
+
 	} else {
 		mainside = false;
 	}
